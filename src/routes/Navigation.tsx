@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
+import { ShoppingPage } from "../02-component-patterns/pages/ShoppingPage";
 
 import logo from '../logo.svg'
 export const Navigation = () => {
@@ -12,7 +13,7 @@ export const Navigation = () => {
                         <li>
                             {/* usamos el classname con una funcion de flecha que nos dece que si el link este activo muestre un estilo 
                             definido en el index.css usando una condicion terciaria*/}
-                            <NavLink to="/home" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Home</NavLink>
+                            <NavLink to="/" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Shopping</NavLink>
                         </li>
                         <li>
                             <NavLink to="/about" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>About</NavLink>
@@ -26,7 +27,7 @@ export const Navigation = () => {
                 <Routes>
                     <Route path="about" element={<h1> About Page</h1>} />
                     <Route path="users" element={<h1> Users Page</h1>} />
-                    <Route path="home" element={<h1> Home Page</h1>} />
+                    <Route path="/" element={ <ShoppingPage />} />
 
                     {/* ponemos una ruta alternativa si no coincide la url mande al home
                     el replace es para que no pueda volver */}
