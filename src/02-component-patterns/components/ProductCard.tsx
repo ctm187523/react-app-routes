@@ -6,11 +6,13 @@ import noImage from '../assets/no-image.jpg';
 
 //importamos el customHook creado
 import { useProduct } from '../hooks/useProduct';
+import { ReactElement } from 'react';
 
 
 //creamos uan interface para definir las props que recibiremos del padre
 interface Props {
     product: Product;
+    children?: ReactElement | ReactElement[] //tipado para los componentes hijos recibidos puede ser uno o varios en forma de array
 }
 
 //creamos la interface con los atributos de Product 
@@ -49,7 +51,7 @@ export const ProductTitle = ({ title }: { title: string }) => {
 //creamos una interfaz para tipar el componente de abajo ProductButtons
 interface ProductButtonsProps {
 
-    increaseBy: (value:number) => void; //tipo funcion recibe como argumento un entero y no devuelve nada(void)
+    increaseBy: (value: number) => void; //tipo funcion recibe como argumento un entero y no devuelve nada(void)
     counter: number;
 
 }
@@ -75,8 +77,9 @@ export const ProductButtons = ({ increaseBy, counter }: ProductButtonsProps) => 
     );
 }
 
-//componente principal donde usamos los componentes creados arriba 
-export const ProductCard = ({ product }: Props) => {
+//componente principal recibe los props children y el product del archivo ShoppingPage.tsx
+//en el children implementa los componentes 
+export const ProductCard = ({ children, product }: Props) => {
 
     //usamos el custom hook creado por nosotros en hooks/useProduct
     const { counter, increaseBy } = useProduct();
@@ -85,17 +88,22 @@ export const ProductCard = ({ product }: Props) => {
     return (
         <div className={styles.productCard}>
 
-            {/* usamos el componente ProductImage creado arriba como props le mandamos la imagen recibida en las props la imagen enviada o la imagen por defecto*/}
+            { children }
+
+            {/*           
             <ProductImage img={product.img} />
 
-            {/* usamos el componente ProductTitle creado arriba pasando las props recibidas */}
             <ProductTitle title={product.title} />
 
-            {/* usamos el componente ProductButtons y le pasamos la funcion increaseBy y la constante counter
-            del customHook creado por nosotros y declarado arriba de este componente ProductCard  */}
             <ProductButtons increaseBy={ increaseBy } counter={ counter }/>
+             */}
 
 
         </div>
     )
 }
+
+//creamos unas propiedades para exportar los compontes creados arriba para usarlos en el archivo ShoppingPage.tsx
+ProductCard.Title = ProductTitle;
+ProductCard.Image = ProductImage;
+ProductCard.Buttons = ProductButtons;
