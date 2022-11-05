@@ -22,9 +22,9 @@ export const ProductImage = ({ img = '' }) => {
 
     if (img) { //si la imagen viene en las props usamos la imagen recibida
         imgToShow = img;
-    } else if (product.img) { //si el product recibido en el useContext viene usamos la imagen
+    } else if (product.img) { //si no, si viene en el  product usamos la imagen
         imgToShow = product.img
-    } else { // si no viene ninguna imagen usamos la imagen por defecto
+    } else { // si no viene ninguna imagen ni en las props ni en el product usamos la imagen por defecto
         imgToShow = noImage;
     }
 
