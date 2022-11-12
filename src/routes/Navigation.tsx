@@ -11,7 +11,7 @@ export const Navigation = () => {
                     <img src={logo} alt="React Logo" />
                     <ul>
                         <li>
-                            {/* usamos el classname con una funcion de flecha que nos dece que si el link este activo muestre un estilo 
+                            {/* usamos el classname con una funcion de flecha que nos dice que si el link este activo muestre un estilo 
                             definido en el index.css usando una condicion terciaria*/}
                             <NavLink to="/" className={ ({ isActive }) => isActive ? 'nav-active' : '' }>Shopping</NavLink>
                         </li>
