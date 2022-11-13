@@ -4,8 +4,8 @@ import styles from '../styles/styles.module.css';
 //importamos el customHook creado
 import { useProduct } from '../hooks/useProduct';
 
-import { createContext } from 'react';
-import { ProductContextProps, ProductCardProps } from '../interfaces/interfaces';
+import { createContext, ReactElement } from 'react';
+import { ProductContextProps, Product } from '../interfaces/interfaces';
 
 
 
@@ -17,10 +17,18 @@ export const ProductContex = createContext({} as ProductContextProps);
 //lo colocaremos en el return del componente principal ProductCard para que envuelva todos los componentes
 const { Provider } = ProductContex;
 
+//creamos una interface para definir las props que recibiremos del padre
+export interface Props {
+    product: Product;
+    children?: ReactElement | ReactElement[] //tipado para los componentes hijos recibidos puede ser uno o varios en forma de array
+    className?: string; //usamos el className para dar estilos a los componentes
+    style?: React.CSSProperties; //usamos este atributo para poder poner estilos en linea de tipo React.CSSProperties usado en el ultimo elemento creado en el ShoppingPagwe
+}
+
 
 //componente principal recibe los props children y el product del archivo ShoppingPage.tsx
-//en el children implementa los componentes , tipamos con la interfaz creada en interfaces/interfaces
-export const ProductCard = ({ children, product }: ProductCardProps) => {
+//en el children implementa los componentes , tipamos con la interfaz Props creada arriba
+export const ProductCard = ({ children, product, className, style }: Props) => {
 
     //usamos el custom hook creado por nosotros en hooks/useProduct
     const { counter, increaseBy } = useProduct();
@@ -32,7 +40,11 @@ export const ProductCard = ({ children, product }: ProductCardProps) => {
             increaseBy,
             product
         }}>
-            <div className={styles.productCard}>
+            {/* usamos el classname recibido del componente ShoppingPage al crear el compound component */}
+            <div className={`${styles.productCard} ${className}`}
+                //le pasamos el style recibido en las props para crear un estilo en linea
+                style={style}
+            >
 
                 {children}
 

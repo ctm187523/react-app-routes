@@ -1,4 +1,5 @@
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
+import '../styles/custom-styles.css';
 
 //creamos un objeto product que sera lo que enviemos al hijo ProductCard en las props
 const product = {
@@ -26,32 +27,73 @@ export const ShoppingPage = () => {
                     {/* creamos un High Order Component(HCO) para que reciba los componentes hijos 
                     que seran los componentes creados en el archivo ProductCatrd.tsx*/}
                     <ProductCard.Image />
-                    <ProductCard.Title title={'Cafe'}/>
+                    <ProductCard.Title title={'Cafe'} />
                     <ProductCard.Buttons />
                 </ProductCard>
 
-                {/* mismo codigo pero sin usar las propiedades del ProductCard creadas al final del archivo 
-                ProductCard.tsx propiedades como ProductCard.image de esta manera se soportan las dos maneras de hacerlo*/ }
-                <ProductCard product={product}>
+                {/* mismo codigo pero sin usar las propiedades del ProductCard ver components,index.ts para ver como hemos exportado los componentes
+                en el ejemplo de arriba y abajo, en este ejemplo los importamos directamente arriba linea 1*/ }
+                <ProductCard
+                    product={product}
+                    // incluimos el estilo que sera pasado en las props al componente ProductCard,ponemos dos estilos
+                    className="bg-dark text-white">
                     {/* creamos un High Order Component(HCO) para que reciba los componentes hijos 
                     que seran los componentes creados en el archivo ProductCatrd.tsx*/}
-                    <ProductImage />
-                    {/* en este caso no ponemos el titulo y usara el titulo del objeto  product */}
-                    <ProductTitle /> 
-                    <ProductButtons />
+                    <ProductImage
+                        className="custom-images"
+                        // añadimos un estilo en linea que lo pasaremos en las props al ProductCard
+                        style={{
+                            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)'
+                        }}
+                    />
+                    {/* en este caso no ponemos el titulo y usara el titulo del objeto  product
+                    le pasamos por las props los estilos  del archivo custom-styles.css */}
+                    <ProductTitle className="text-bold" />
+                    <ProductButtons className="custom-buttons" />
                 </ProductCard>
 
-                
+
                 {/* creamos otro componente pero ponemos los botones arriba solo para ver que se pueden convinar los diferentes
                 componente hijos como queramos */}
-                <ProductCard product={product}>
+                <ProductCard
+                    product={product}
+                    className="bg-dark text-white">
                     {/* creamos un High Order Component(HCO) para que reciba los componentes hijos 
                     que seran los componentes creados en el archivo ProductCatrd.tsx*/}
-                     <ProductButtons />
-                    <ProductCard.Image />
-                    <ProductCard.Title title={'Cafe Quijano'}/>
+                    <ProductButtons className="custom-buttons" />
+                    <ProductCard.Image className="custom-images" />
+                    <ProductCard.Title title={'Cafe Quijano'} className="text-bold" />
                 </ProductCard>
-            </div> 
+
+                <ProductCard
+                    product={product}
+                    // añadimos un estilo en linea que lo pasaremos en las props al ProductCard
+                    style={{
+                        backgroundColor: '#70D1F8'
+                    }}
+                >
+                    {/* creamos un High Order Component(HCO) para que reciba los componentes hijos 
+                    que seran los componentes creados en el archivo ProductCatrd.tsx*/}
+                    <ProductCard.Image
+                        // añadimos un estilo en linea que lo pasaremos en las props al ProductCard
+                        style={{
+                            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)'
+                        }}
+                    />
+
+                    <ProductCard.Title
+                        // añadimos un estilo en linea que lo pasaremos en las props al ProductCard
+                        style={{
+                            fontWeight: 'bold'
+                        }} />
+                    <ProductButtons
+                        // añadimos un estilo en linea que lo pasaremos en las props al ProductCard
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }} />
+                </ProductCard>
+            </div>
         </div>
     )
 }
