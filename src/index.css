@@ -14,7 +14,8 @@ code {
     monospace;
 }
 
-
+/* si no ponemos display flex el siguinte contenido Shopping,About o 
+Users apareceria abajo, ver -->  https://developer.mozilla.org/es/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox*/
 .main-layout {
   display: flex;
   flex-direction: row;
@@ -22,6 +23,8 @@ code {
 
 nav {
   background-color: #363a45;
+  /* usamos vh que significa viewport height (altura del dispositivo) 
+  cojemos el 100 por cien de altura, para el ancho seria vw*/
   height: 100vh;
   margin-right: 15px;
   overflow-y: scroll;
