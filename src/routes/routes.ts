@@ -1,5 +1,5 @@
 import { lazy, LazyExoticComponent } from 'react';
-import { LazyPage1, LazyPage2, LazyPage3} from '../01-lazyload/pages';
+//import { LazyPage1, LazyPage2, LazyPage3} from '../01-lazyload/pages';
 
 
 //creamos un archivo para crear las rutas dinamicas que usaremos en el archivo Navigation.jsx
@@ -14,7 +14,7 @@ type JSXComponent = () => JSX.Element; //ponemos que es de tipo component
 interface Route {
     to: string,
     path: string,
-    Component:  LazyExoticComponent<() => JSX.Element> | JSXComponent // LazyExoticComponent<() => JSX.Element> es el tipo que tiene un componete con lazy load ponemos que puede ser de tipo componet o lazy load, lo ponemos con la c mayuscula poruque sera un componente y estos deben ir en mayuscula la primera letra
+    Component:  LazyExoticComponent<JSXComponent> | JSXComponent // LazyExoticComponent<() => JSX.Element> es el tipo que tiene un componete con lazy load ponemos que puede ser de tipo componet o lazy load, lo ponemos con la c mayuscula porque sera un componente y estos deben ir en mayuscula la primera letra
     name: string
 }
 
