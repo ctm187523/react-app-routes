@@ -1,9 +1,10 @@
-import React from 'react'
+
 import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import { LazyPage1, LazyPage2, LazyPage3 } from '../pages'
 
 //cargamos el componente principal de manera perezosa, solo se cargara si es solicitado
 // sus hijos tendran una carga sin lazyload cuando se carga el padre se cargan todos los hijos a la vez
+//Nested quiere decir anidado en ingles
 export const lazyLayout = () => {
     return (
         <div>

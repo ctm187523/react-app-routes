@@ -14,7 +14,7 @@ type JSXComponent = () => JSX.Element; //ponemos que es de tipo component
 interface Route {
     to: string,
     path: string,
-    Component:  LazyExoticComponent<() => JSX.Element> | JSXComponent // LazyExoticComponent<() => JSX.Element> es el tipo que tiene un componete con lazy load ponemos que puede ser de tipo component o lazy load, lo ponemos con la c mayuscula poruque sera un componente y estos deben ir en mayuscula la primera letra
+    Component:  LazyExoticComponent< JSXComponent > | JSXComponent // LazyExoticComponent<() => JSX.Element> es el tipo que tiene un componete con lazy load ponemos que puede ser de tipo component o lazy load, lo ponemos con la c mayuscula poruque sera un componente y estos deben ir en mayuscula la primera letra
     name: string
 }
 
